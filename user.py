@@ -164,3 +164,11 @@ class User:
         }
         url = '?'.join((auth_url, urlencode(auth_params)))
         return url
+
+    @staticmethod
+    def select_photo(id):
+        list_photo = []
+        query = db.session.query(db.Photos.photos_url).filter(db.Photos.user_id == id).all()
+        for i in query:
+            list_photo.append(i[0])
+        return list_photo
